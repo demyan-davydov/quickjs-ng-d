@@ -1,7 +1,7 @@
 /// Verifies the D declarations against the C compiler's view (abi/abi_probe.c).
 module abi;
 
-import quickjs;
+import quickjs_ng;
 
 extern (C) nothrow @nogc
 {

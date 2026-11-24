@@ -1,4 +1,4 @@
-import quickjs;
+import quickjs_ng;
 import std.stdio;
 
 void main()

@@ -7,5 +7,5 @@
 - Compiled sources: `quickjs.c libregexp.c libunicode.c dtoa.c` (the upstream `qjs_sources`
   without `quickjs-libc.c`) plus `abi/abi_probe.c`.
 - Defines/flags (from upstream CMake): `-std=gnu11 -funsigned-char -DQUICKJS_NG_BUILD -D_GNU_SOURCE`.
-- To update: replace the directory, bump `quickjs.constants` version constants, re-diff
-  `quickjs.h` against `source/quickjs/{types,constants,c_api}.d`, run `dub test`.
+- To update: replace the directory, bump `quickjs_ng.constants` version constants, re-diff
+  `quickjs.h` against `source/quickjs_ng/{types,constants,c_api}.d`, run `dub test`.

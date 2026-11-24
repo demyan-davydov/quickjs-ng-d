@@ -23,7 +23,7 @@ Consequences
   GC finalizer timing/thread is unspecified. Prefer stack/struct ownership or `destroy()`.
 - Leak check: `runtime.setDumpFlags(JS_DUMP_LEAKS)` makes `JS_FreeRuntime` report (and abort on) leaks; used in tests.
 
-## Classes (`quickjs.jsclass`)
+## Classes (`quickjs_ng.jsclass`)
 - `ctx.defineClass!T(name, ctor).method(...).property(...).build("Global")` registers a JS class
   backed by a D `class T`. The class id lives in the runtime; the prototype is kept by the context.
 - The JS object owns its D instance: the instance is a GC root while the JS object lives, and the
@@ -31,7 +31,7 @@ Consequences
 - D instances must not store `Value`/`Context` of the same context (invisible cycle => leak).
 - Calling a class without `new`, or a method on a foreign receiver, throws a JS `TypeError`.
 
-## Modules (`quickjs.jsmodule`)
+## Modules (`quickjs_ng.jsmodule`)
 - `rt.setModuleLoader(name => source)` supplies ES module source from D (return `null` => `ReferenceError`);
   QuickJS caches modules per context, so the loader runs once per module name.
 - `ctx.defineNativeModule(name, exports, init)` registers a module implemented in D; `init` runs lazily

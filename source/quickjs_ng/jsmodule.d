@@ -1,11 +1,11 @@
 /// ES module support: source loader, native (D-implemented) modules, module evaluation.
-module quickjs.jsmodule;
+module quickjs_ng.jsmodule;
 
-import quickjs.c_api;
-import quickjs.context;
-import quickjs.exception;
-import quickjs.runtime;
-import quickjs.value;
+import quickjs_ng.c_api;
+import quickjs_ng.context;
+import quickjs_ng.exception;
+import quickjs_ng.runtime;
+import quickjs_ng.value;
 import core.memory : GC;
 import std.string : toStringz;
 

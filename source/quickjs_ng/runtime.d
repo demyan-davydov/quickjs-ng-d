@@ -5,11 +5,11 @@
 /// keeps a `Runtime` copy, so a runtime always outlives its contexts.
 /// QuickJS is not thread-safe: use a runtime (and everything created from it) from one
 /// thread at a time.
-module quickjs.runtime;
+module quickjs_ng.runtime;
 
-import quickjs.c_api;
-import quickjs.context;
-import quickjs.exception;
+import quickjs_ng.c_api;
+import quickjs_ng.context;
+import quickjs_ng.exception;
 import core.stdc.stdlib : malloc, free;
 
 struct Runtime

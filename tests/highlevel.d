@@ -1,6 +1,6 @@
 module highlevel;
 
-import quickjs;
+import quickjs_ng;
 import std.exception : assertThrown, collectException;
 
 unittest // spec example

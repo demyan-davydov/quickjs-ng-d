@@ -4,12 +4,12 @@
 /// registered as a GC root; when QuickJS finalizes the JS object the root is removed and the
 /// D GC may reclaim the instance. D instances must not hold `Value`/`Context` of the same
 /// context (cycle invisible to QuickJS) - use the `Context` argument of callbacks instead.
-module quickjs.jsclass;
+module quickjs_ng.jsclass;
 
-import quickjs.c_api;
-import quickjs.context;
-import quickjs.exception;
-import quickjs.value;
+import quickjs_ng.c_api;
+import quickjs_ng.context;
+import quickjs_ng.exception;
+import quickjs_ng.value;
 import core.memory : GC;
 import std.string : toStringz;
 

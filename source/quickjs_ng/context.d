@@ -3,12 +3,12 @@
 /// Ownership: `Context` is a counted handle (JS_DupContext / JS_FreeContext) and also holds
 /// a `Runtime` copy. `Value`s hold a `Context` copy, so contexts outlive their values and
 /// runtimes outlive their contexts - destruction order can never be wrong.
-module quickjs.context;
+module quickjs_ng.context;
 
-import quickjs.c_api;
-import quickjs.exception;
-import quickjs.runtime;
-import quickjs.value;
+import quickjs_ng.c_api;
+import quickjs_ng.exception;
+import quickjs_ng.runtime;
+import quickjs_ng.value;
 import std.traits : isIntegral, isFloatingPoint, isSomeString, isArray;
 import std.string : toStringz;
 

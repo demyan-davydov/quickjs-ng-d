@@ -1,7 +1,7 @@
 /// Smoke tests that really run JavaScript through the low-level binding.
 module smoke;
 
-import quickjs;
+import quickjs_ng;
 import core.stdc.string : strlen;
 
 private JSValue evalStr(JSContext* ctx, string src)

@@ -2,7 +2,7 @@
 // Copyright (c) 2017-2026 Fabrice Bellard, Charlie Gordon, Ben Noordhuis, Saul Ibarra Corretge
 // and contributors. Distributed under the MIT License (see ../../LICENSE).
 /// Constants from quickjs.h (QuickJS-NG, version pinned in VENDOR.md).
-module quickjs.constants;
+module quickjs_ng.constants;
 
 enum QJS_VERSION_MAJOR = 0;
 enum QJS_VERSION_MINOR = 18;

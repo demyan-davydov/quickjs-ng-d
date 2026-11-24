@@ -1,6 +1,6 @@
 module classes_modules;
 
-import quickjs;
+import quickjs_ng;
 import std.exception : collectException;
 
 class Point

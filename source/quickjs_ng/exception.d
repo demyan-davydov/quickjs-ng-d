@@ -1,5 +1,5 @@
 /// Exceptions of the high-level API.
-module quickjs.exception;
+module quickjs_ng.exception;
 
 /// A JavaScript exception converted to a D exception.
 /// Holds only plain strings (no JS handles), so it is safe to keep, copy and let the

@@ -10,11 +10,11 @@
 /// Do not store Values in GC-managed class fields without destroying them explicitly:
 /// the D GC does not guarantee when (or on which thread) finalizers run, and QuickJS is
 /// single-threaded.
-module quickjs.value;
+module quickjs_ng.value;
 
-import quickjs.c_api;
-import quickjs.context;
-import quickjs.exception;
+import quickjs_ng.c_api;
+import quickjs_ng.context;
+import quickjs_ng.exception;
 import std.traits : isIntegral, isFloatingPoint, isSomeString;
 
 struct Value

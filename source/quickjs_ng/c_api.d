@@ -9,10 +9,10 @@
 ///  * a function returning `JSValue` transfers ownership to the caller (call JS_FreeValue).
 /// The D type of both is the same struct; the distinction is documented per parameter by
 /// the parameter name (`val` = owned, otherwise borrowed) only where it matters.
-module quickjs.c_api;
+module quickjs_ng.c_api;
 
-public import quickjs.types;
-public import quickjs.constants;
+public import quickjs_ng.types;
+public import quickjs_ng.constants;
 
 // -------------------------------------------------------------------------------------
 // Functions that are `static inline` in quickjs.h are re-implemented here in D.

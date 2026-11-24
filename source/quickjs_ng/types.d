@@ -3,7 +3,7 @@
 // and contributors. Distributed under the MIT License (see ../../LICENSE).
 /// Low-level QuickJS-NG types. Mirrors quickjs.h of the vendored version (see VENDOR.md).
 /// Only the 64-bit, non-NaN-boxing JSValue layout is supported.
-module quickjs.types;
+module quickjs_ng.types;
 
 extern (C) nothrow:
 

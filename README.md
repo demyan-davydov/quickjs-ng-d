@@ -1,4 +1,4 @@
-# quickjs-d
+# quickjs_ng
 
 D binding for [QuickJS-NG](https://github.com/quickjs-ng/quickjs), a small embeddable JavaScript engine.
 The engine's C sources are bundled and compiled on your machine; nothing is downloaded at build time.
@@ -10,9 +10,9 @@ The engine's C sources are bundled and compiled on your machine; nothing is down
 
 ## Status
 
-| | |
+| Component | Status |
 |---|---|
-| Low-level C API binding (`quickjs.c_api`) | done |
+| Low-level C API binding (`quickjs_ng.c_api`) | done |
 | High-level API: `Runtime`, `Context`, `Value`, `JSException` | done |
 | Classes (`defineClass`), modules (loader, native modules) | done |
 | Static linking (`static` configuration, default) | done |
@@ -23,11 +23,11 @@ The engine's C sources are bundled and compiled on your machine; nothing is down
 ## Use
 
 ```sdl
-dependency "quickjs" path="path/to/quickjs-d"   // or version="~>0.1.0" once published
+dependency "quickjs_ng" path="path/to/quickjs-ng-d"   // or version="~>0.1.0" once published
 ```
 
 ```d
-import quickjs;
+import quickjs_ng;
 
 void main()
 {
