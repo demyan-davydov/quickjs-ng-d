@@ -15,9 +15,10 @@ The engine's C sources are bundled and compiled on your machine; nothing is down
 | Low-level C API binding (`quickjs.c_api`) | done |
 | High-level API: `Runtime`, `Context`, `Value`, `JSException` | done |
 | Classes (`defineClass`), modules (loader, native modules) | done |
-| Static linking (`static` configuration, default) | done, verified on macOS ARM64 + ldc2 |
+| Static linking (`static` configuration, default) | done |
 | `dynamic`, `system` configurations | not implemented |
-| Linux, macOS x86_64, Windows | CI written, **not yet verified** |
+| Verified in CI (ldc2, `dub test`): Linux x86_64, Linux ARM64, macOS ARM64, macOS x86_64, Windows x86_64 (MSVC) | yes |
+| 32-bit targets | not supported |
 
 ## Use
 

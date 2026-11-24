@@ -1,6 +1,6 @@
 # Builds the vendored QuickJS-NG (+ ABI probe) into build\lib\quickjs-ng.lib with MSVC (cl/lib).
-# Run from a Developer PowerShell / after vcvars64. Honors $env:CFLAGS. Experimental: not yet
-# verified on real Windows hardware (CI job "windows" is allowed to fail).
+# Run from a Developer PowerShell / after vcvars64. Honors $env:CFLAGS. Compiled with /MT to match
+# LDC's default static CRT; verified in CI on windows-latest (x86_64, MSVC).
 param([string]$Mode = "static")
 $ErrorActionPreference = "Stop"
 if ($Mode -ne "static") { throw "only 'static' is implemented on Windows" }
@@ -15,7 +15,7 @@ if (-not (Get-Command cl.exe -ErrorAction SilentlyContinue)) {
     throw "cl.exe not found: run from a Visual Studio developer environment (vcvars64.bat)"
 }
 
-$Flags = @("/nologo", "/O2", "/std:c11", "/experimental:c11atomics", "/J", "/MD",
+$Flags = @("/nologo", "/O2", "/std:c11", "/experimental:c11atomics", "/J", "/MT",
            "/DQUICKJS_NG_BUILD", "/DWIN32_LEAN_AND_MEAN", "/D_WIN32_WINNT=0x0601",
            "/wd4018", "/wd4061", "/wd4100", "/wd4146", "/wd4244", "/wd4267", "/wd4334", "/wd4996",
            "/I$Src")
@@ -24,7 +24,9 @@ if ($env:CFLAGS) { $Flags += $env:CFLAGS -split " " }
 $Sources = @("$Src\quickjs.c", "$Src\libregexp.c", "$Src\libunicode.c", "$Src\dtoa.c", "$Root\abi\abi_probe.c")
 $Target  = Join-Path $Out "quickjs-ng.lib"
 $Stamp   = Join-Path $Obj "flags.stamp"
-$NewStamp = (cl.exe 2>&1 | Select-Object -First 1) + "|" + ($Flags -join " ")
+# cl.exe prints its banner to stderr; read it through cmd so $ErrorActionPreference=Stop is not triggered
+$ClVersion = (& cmd.exe /c "cl.exe 2>&1" | Select-Object -First 1)
+$NewStamp = "$ClVersion" + "|" + ($Flags -join " ")
 if (-not (Test-Path $Stamp) -or (Get-Content $Stamp -Raw) -ne $NewStamp) {
     Remove-Item "$Obj\*.obj", $Target -ErrorAction SilentlyContinue
     Set-Content $Stamp $NewStamp -NoNewline
