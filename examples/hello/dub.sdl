@@ -1,0 +1,3 @@
+name "hello"
+dependency "quickjs" path="../.."
+targetType "executable"

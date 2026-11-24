@@ -1,0 +1,23 @@
+# build artifacts
+build/
+.dub/
+dub.selections.json
+*.a
+*.o
+*.obj
+*.lib
+*.dylib
+*.so
+*.dll
+*.exe
+*.pdb
+quickjs-test-*
+__test__*
+docs.json
+docs/
+# example executables
+examples/*/hello
+# OS/editor
+.DS_Store
+.idea/
+.vscode/

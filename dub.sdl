@@ -1,0 +1,44 @@
+name "quickjs"
+description "D binding for QuickJS-NG (bundles QuickJS-NG v0.18.0, built from source)"
+license "MIT"
+copyright "Copyright (c) the quickjs-d authors; QuickJS-NG is (c) Fabrice Bellard, Charlie Gordon and contributors"
+targetType "sourceLibrary"
+sourcePaths "source"
+importPaths "source"
+
+# Default: build the vendored QuickJS-NG into build/lib/libquickjs-ng.a and link it statically.
+configuration "static" {
+    preGenerateCommands "$QUICKJS_PACKAGE_DIR/scripts/build.sh static" platform="posix"
+    lflags "-L$QUICKJS_PACKAGE_DIR/build/lib" platform="posix"
+    preGenerateCommands "powershell -NoProfile -ExecutionPolicy Bypass -File $QUICKJS_PACKAGE_DIR/scripts/build.ps1 static" platform="windows"
+    lflags "/LIBPATH:$QUICKJS_PACKAGE_DIR/build/lib" platform="windows"
+    lflags "/STACK:8388608" platform="windows"
+    libs "quickjs-ng"
+    lflags "-lm" platform="linux"
+}
+
+# Compiles the D binding into build/libquickjs.a (`dub build --config=library`).
+# For checking the package / CI only: dependents use `static` (sources compiled into their build).
+configuration "library" {
+    targetType "library"
+    targetPath "build"
+    preGenerateCommands "$QUICKJS_PACKAGE_DIR/scripts/build.sh static" platform="posix"
+    lflags "-L$QUICKJS_PACKAGE_DIR/build/lib" platform="posix"
+    preGenerateCommands "powershell -NoProfile -ExecutionPolicy Bypass -File $QUICKJS_PACKAGE_DIR/scripts/build.ps1 static" platform="windows"
+    lflags "/LIBPATH:$QUICKJS_PACKAGE_DIR/build/lib" platform="windows"
+    libs "quickjs-ng"
+    lflags "-lm" platform="linux"
+}
+
+# `dub test` uses this configuration: same linkage as `static`, plus the test sources.
+configuration "unittest" {
+    preGenerateCommands "$QUICKJS_PACKAGE_DIR/scripts/build.sh static" platform="posix"
+    lflags "-L$QUICKJS_PACKAGE_DIR/build/lib" platform="posix"
+    preGenerateCommands "powershell -NoProfile -ExecutionPolicy Bypass -File $QUICKJS_PACKAGE_DIR/scripts/build.ps1 static" platform="windows"
+    lflags "/LIBPATH:$QUICKJS_PACKAGE_DIR/build/lib" platform="windows"
+    lflags "/STACK:8388608" platform="windows"
+    libs "quickjs-ng"
+    lflags "-lm" platform="linux"
+    sourcePaths "source" "tests"
+    importPaths "source" "tests"
+}

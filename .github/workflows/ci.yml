@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / ${{ matrix.compiler }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest,    compiler: ldc-latest }
+          - { os: ubuntu-24.04-arm, compiler: ldc-latest }
+          - { os: macos-latest,     compiler: ldc-latest }   # Apple Silicon (arm64)
+          - { os: macos-13,         compiler: ldc-latest }   # x86_64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dlang-community/setup-dlang@v2
+        with:
+          compiler: ${{ matrix.compiler }}
+      - name: Unit tests (builds vendored QuickJS-NG, runs binding + high-level tests)
+        run: dub test --compiler=ldc2
+      - name: Example
+        working-directory: examples/hello
+        run: dub run --compiler=ldc2
+
+  windows:
+    # Experimental: build.ps1 has not been verified on real Windows yet.
+    name: windows (experimental)
+    runs-on: windows-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1
+      - uses: dlang-community/setup-dlang@v2
+        with:
+          compiler: ldc-latest
+      - name: Unit tests
+        run: dub test --compiler=ldc2
